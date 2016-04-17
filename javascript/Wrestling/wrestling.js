@@ -4,6 +4,7 @@ void setup() {
 
 var width = 400;
 var height =400;
+var time = 0;
 
 //Wrestling, Player 1 LEFT: A, RIGHT: D, HOLD/ESCAPE: W, DUCK: S
 //           Player 2 LEFT: LEFT, RIGHT, RIGHT, HOLD/ESCAPE: UP, DUCK: DOWN
@@ -14,6 +15,7 @@ var height =400;
 textSize(40); //Default textsize is 40
 textAlign(CENTER,CENTER); //Default text alignment is in the center
 var players = []; //Array that holds the two players
+var flashes = []; //Array to hold the background flashing
 var fighting = 0; //Who has last clicked their "Hold/Escape" button
 
 var keys = []; //Array that holds which buttons are currently pressed
@@ -29,6 +31,34 @@ void keyPressed(){
 };
 void keyReleased(){
     keys[keyCode]=false; //Sets the button released to false
+};
+
+//This object is the light flashes in the background
+var star = function(position, velocity){
+    this.position = position;
+    this.velocity = velocity;
+    this.r=3;
+    this.display = function(){
+        this.r = random(10,12);
+        noStroke();
+        fill(252, 252, 252);
+        if (floor(random(1,60*10))===1)
+        {
+            ellipse(position.x, position.y, this.r,this.r);
+        }
+        else
+        {
+            //ellipse(position.x, position.y, this.r, this.r);
+        }
+    };
+    this.update = function(){
+        this.position.add(this.velocity);
+        if(this.position.x < 0){
+            this.position.x = 400;
+            this.position.y = random(0, 400);
+        }
+        this.display();
+    };
 };
 
 //This objects holds the logical and visuals for the chair
@@ -273,17 +303,39 @@ Player.prototype.render = function(){
     this.chair.render();
 };
 
+for(var i = 0; i < 24; i++){
+    flashes.push(new star(new PVector(random(0,400),random(120,340)), 
+                          new PVector(0,0)));
+}
+
 //Function to draw the game background
 var bg = function(){
     background(0,0,0);
+    //background flashes
+    for(var i = 0, length = flashes.length; i < length; i++){
+        flashes[i].update();
+        flashes[i].display();
+    }
     //The lights
     fill(255, 255, 0);
-    for(var i = 0; i < 400; i+=58){
+    for(var i = -55; i < 450; i+=58){
+        fill(255,255,0);
         ellipse(25+i,100, 50, 50);
+        fill(255, 255, 0, 100);
+        noStroke();
+        triangle(25+i, 100, 25+i-50+50*sin(time), 400, 25+i+50+50*sin(time),400);
+        stroke(0,0,0);
     }
     //The arena
     fill(128, 128, 128);
     rect(0, 350, 400, 50);
+    time+=0.01;
+    stroke(255,0,0);
+    strokeWeight(3);
+    for(var i = 0; i < 3; i++){
+        line(0,300+20*i, 400, 300+20*i);}
+    stroke(0,0,0);
+    strokeWeight(1);
 };
 
 //Setting up the players
