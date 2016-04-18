@@ -12,7 +12,7 @@ var time = 0;
 //gameplay is very simple leading to a very easy learning curve.
 
 //dangleMode="radians"; //Setting the angles to use radians
-textSize(40); //Default textsize is 40
+textSize(60); //Default textsize is 40
 textAlign(CENTER,CENTER); //Default text alignment is in the center
 var players = []; //Array that holds the two players
 var flashes = []; //Array to hold the background flashing
@@ -45,10 +45,6 @@ var star = function(position, velocity){
         if (floor(random(1,60*10))===1)
         {
             ellipse(position.x, position.y, this.r,this.r);
-        }
-        else
-        {
-            //ellipse(position.x, position.y, this.r, this.r);
         }
     };
     this.update = function(){
@@ -161,7 +157,7 @@ Player.prototype.input = function() {
         if(keys[this.con[2]] && !keys[this.con[0]]){
             //heal a little
             if(this.stamina < this.staminaMax){
-            this.stamina += 0.1;}
+                this.stamina += 0.1;}
         }
     }
     //If you are pinned or pinning and pressing the attach button
@@ -201,7 +197,7 @@ Player.prototype.input = function() {
     //If a chair is being thrown at you check if you are ducking
     //If you are not lose 40 stamina when it hits you.
     if(this.enemy.chair.mode===2 && 
-       this.enemy.chair.x===this.pos.x+this.size.x/2 &&
+       this.enemy.chair.x===this.pos.x+this.size.x &&
        (this.state !== 3) && (this.state !== 4)){
         if(!keys[this.con[2]]){
             this.stamina-=40;
