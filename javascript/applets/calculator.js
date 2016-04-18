@@ -136,7 +136,7 @@ Input_field.prototype.findArr = function(arr, value){
 };
 Input_field.prototype.typing = function(){
     if(this.active){
-        if (keyCode === 8){this.input.splice(this.input.length-1, 1);}
+        if (keyCode === LEFT){this.input.splice(this.input.length-1, 1);}
         if (this.input.length <= this.length){
             var sKey = false;
             if (keyCode===187){
