@@ -11,14 +11,16 @@ h1 {
     background: white;
     text-align: center;
     border-style: ridge; 
+    display:inline
 }
 
 body {
+    margin-top: 10px;
     text-align: center;
 }
 
 #Notes {
-    background: white;
+    background: #dddddd;
     border-style: ridge;
     text-align: left;
     margin: 30px;
@@ -29,5 +31,6 @@ ul {
 }
 
 canvas {
+    margin-top: 20px;
     border-style:ridge;
 }
