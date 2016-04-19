@@ -225,5 +225,4 @@ void draw() {
     fill(0, 0, 0);
     text("y =", 15, 345);
     inputFields[0].render();
-    println(keyCode);
 };
