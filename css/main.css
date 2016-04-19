@@ -22,3 +22,7 @@ body {
     border-style: ridge;
     text-align: left;
 }
+
+ul {
+    list-style-position: inside;
+}
