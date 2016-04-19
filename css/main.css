@@ -6,3 +6,19 @@ body {
     background: -o-linear-gradient(left, lightblue, white);
     background: linear-gradient(left, lightblue, white); /* For Safari 5.1 to 6.0 */ /* For Opera 11.1 to 12.0 */ /* For Firefox 3.6 to 15 */ /* Standard syntax */
 }
+
+h1 {
+    background: white;
+    text-align: center;
+    border-style: ridge; 
+}
+
+body {
+    text-align: center;
+}
+
+#Notes {
+    background: white;
+    border-style: ridge;
+    text-align: left;
+}
