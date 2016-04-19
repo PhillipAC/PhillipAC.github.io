@@ -1,3 +1,8 @@
 body {
-    background-color: lightblue;
+    background: lightblue; /* For browsers that do not support gradients */
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(lightblue), to(white));
+    background: -webkit-linear-gradient(left, lightblue, white);
+    background: -moz-linear-gradient(left, lightblue, white);
+    background: -o-linear-gradient(left, lightblue, white);
+    background: linear-gradient(left, lightblue, white); /* For Safari 5.1 to 6.0 */ /* For Opera 11.1 to 12.0 */ /* For Firefox 3.6 to 15 */ /* Standard syntax */
 }
