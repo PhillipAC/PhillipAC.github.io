@@ -1,13 +1,20 @@
-<!DOCTYPE HTML>
-<chrome --allow-file-acess-from-files>
-<html>
-	<title>Wrestling Mania</title>
-	<head>
-	    <link rel="stylesheet" type="text/css" href="css/main.css">
+<!DOCTYPE html>
+<html lang="en">
+<title>Black Jack</title>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="javascript/ProcessingJS/processing.js"></script>
-	<head>
+</head>
     <body>
-        <h1>Wrestling Mania</h1><br>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Wrestling Mania</h1>
+        </div>
         <canvas width="400" height="400" data-processing-sources="javascript/applets/wrestling.js"></canvas>
         <p id = "Notes">
             This is a purly fun game I made to bring to a wrestling party. 
@@ -32,5 +39,6 @@
             duck to rest, but while ducking you cannot reach for the other
             player leaving you open to being grabbed.
         </p>
+    </div>
     </body>
 </html>

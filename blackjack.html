@@ -1,24 +1,32 @@
-<!DOCTYPE HTML>
-<chrome --allow-file-acess-from-files>
-<html>
-	<title>Black Jack</title>
-	<head>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!DOCTYPE html>
+<html lang="en">
+<title>Black Jack</title>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="javascript/ProcessingJS/processing.js"></script>
-	<head>
-    <body>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
         <h1>Blackjack</h1>
-        <br>
-        <canvas width="400" height="400" data-processing-sources="javascript/applets/blackjack.js"></canvas>
-        <p id = "Notes">
-            This game is very simple. Play against the dealer as cards are
-            dealt. Press hit to get a new card and hold when you are done.
-            Try to get at close to 21 without going over as possible. <br>
-            This game was designed to show my students how cards can be 
-            objects and a deck is a special object that has an array
-            that holds the car objects. The card and deck objects were
-            designed so that they could be used in different games. This
-            is one such game that could be made with them.
-        </p>
-    </body>
+    </div>
+    <br>
+    <canvas width="400" height="400" data-processing-sources="javascript/applets/blackjack.js"></canvas>
+    <p id = "Notes">
+        This game is very simple. Play against the dealer as cards are
+        dealt. Press hit to get a new card and hold when you are done.
+        Try to get at close to 21 without going over as possible. <br>
+        This game was designed to show my students how cards can be 
+        objects and a deck is a special object that has an array
+        that holds the car objects. The card and deck objects were
+        designed so that they could be used in different games. This
+        is one such game that could be made with them.
+    </p>
+</div>
+</body>
 </html>
