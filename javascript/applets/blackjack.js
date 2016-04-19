@@ -11,10 +11,10 @@
 //into the deck. Good luck!
 //UPDATE: Added Comments
 
-/* @pjs preload="images/suits.png"; */
-/* @pjs preload="images/Piceratops-ulatimate.png"; */
-PImage suitsIMG = loadImage("images/suits.png");
-PImage dragonIMG = loadImage("images/Piceratops-ultimate.png");
+/* @pjs preload="../images/suits.png"; */
+/* @pjs preload="../images/Piceratops-ulatimate.png"; */
+PImage suitsIMG = loadImage("../images/suits.png");
+PImage dragonIMG = loadImage("../images/Piceratops-ultimate.png");
 PImage heartIMG = suitsIMG.get(200, 0, 200, 200);
 PImage spadeIMG = suitsIMG.get(0,0,200,200);
 PImage diamondIMG = suitsIMG.get(0,200,200,200);

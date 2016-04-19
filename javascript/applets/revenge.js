@@ -7,16 +7,16 @@
 //Story: After escaping from the woods Khan found a space ship
 //       Help Khan get revenge against the robots and their space dragon.
 
-/* @pjs preload="images/Piceratops-ultimate.png"; */
-/* @pjs preload="images/Rock.png"; */
-/* @pjs preload="images/Heart.png"; */
-/* @pjs preload="images/Robot_female_1.png"; */
-/* @pjs preload="images/rocketship.png"; */
-PImage dragonImg = loadImage("images/Piceratops-ultimate.png");
-PImage rockImg = loadImage("images/Rock.png");
-PImage heartImg = loadImage("images/Heart.png");
-PImage robotImg = loadImage("images/Robot_female_1.png");
-PImage shipImg = loadImage("images/rocketship.png");
+/* @pjs preload="../images/Piceratops-ultimate.png"; */
+/* @pjs preload="../images/Rock.png"; */
+/* @pjs preload="../images/Heart.png"; */
+/* @pjs preload="../images/Robot_female_1.png"; */
+/* @pjs preload="../images/rocketship.png"; */
+PImage dragonImg = loadImage("../images/Piceratops-ultimate.png");
+PImage rockImg = loadImage("../images/Rock.png");
+PImage heartImg = loadImage("../images/Heart.png");
+PImage robotImg = loadImage("../images/Robot_female_1.png");
+PImage shipImg = loadImage("../images/rocketship.png");
 
 void setup() { 
   size(400, 400); 
