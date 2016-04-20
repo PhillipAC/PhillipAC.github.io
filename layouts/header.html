@@ -5,7 +5,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Links
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Main
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/index.html">Home</a></li>
@@ -16,17 +16,19 @@
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">ProcessingJS
           <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/applets/blackjack.html">Blackjack</a></li>
-            <li><a href="/applets/calculator.html">Calculator</a></li>
-            <li><a href="/applets/connect4.html">Connect 4</a></li>
-            <li><a href="/applets/game_of_life.html">Game of Life</a></li>
-            <li><a href="/applets/geometry.html">Transformation Demo</a></li>
-            <li><a href="/applets/minesweeper.html">Sweeping Mines</a></li>
-            <li><a href="/applets/revenge.html">Khan's Revenge</a></li>
-            <li><a href="/applets/wrestling.html">Wrestle Mania</a></li>
-          </ul>
-        </li>
+        <ul class="dropdown-menu" id = "links">
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Geogebra
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/geogebra/washer.html">Generic Washer Method</a></li>
+        </ul>
+      </li>
      </ul>
     </div>
 </nav>
+<script>
+  $(function(){$("#links").load("/layouts/processing_list.html");});
+</script>
