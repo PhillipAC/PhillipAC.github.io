@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Phillip Clontz | Resume</title>
+    <title>Board Game</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="javascript/ProcessingJS/processing.js"></script>
+    <script src="../javascript/ProcessingJS/processing.js"></script>
     <script>
       $(function(){$("#header").load("../layouts/header.html");});
-      $("iframe").wrap('<div class="embed-responsive embed-responsive-16by9"/>');
-      $("iframe").addClass('embed-responsive-item');
     </script>
-     <style>
-        iframe{ width: 100%}
-    </style>
 </head>
 <body>
-<div id = "header"></div>
+<div id ="header"></div>
 <div class="container">
     <div class="jumbotron text-center">
-    <h1>Resume</h1>
+        <h1>Slides and Ladders</h1>
     </div>
-    <p>
-        <iframe
-        class="center-block"
-        src="http://docs.google.com/gview?url=http://phillipac.github.com/pdfs/Resume-Clontz.pdf&embedded=true" 
-        style="width:718px; height:700px;" frameborder="1"></iframe>
+    <canvas width="800" height="800" class="center-block" 
+      data-processing-sources="../javascript/applets/boardgame.js"></canvas>
+    <p id = "Notes">
+        This will be a turned based board game that players 1-4 can play.
+        Once again this project shows the power of Object-Oriented programming.
+        More information will be posted when complete.
     </p>
 </div>
 </body>
