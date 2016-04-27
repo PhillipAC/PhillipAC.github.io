@@ -331,7 +331,7 @@ void draw(){
     }
     else if(board.mode==="MOVE"){
         camera.follow(board.pawns[board.turn]);
-        if(dice.roll>0){
+        if(dice.roll>0&&board.pawns[board.turn].location<board.spaces.length){
             board.pawns[board.turn].moveSpace(1);
         }
         if(board.pawns[board.turn].onTile){
@@ -339,6 +339,9 @@ void draw(){
         }
         if(dice.roll <= 0){
            board.mode="CHECK";
+        }
+        if(board.pawns[board.turn].location>=board.spaces.length){
+            board.mode="WIN";
         }
     }
     else if(board.mode==="CHECK"){
@@ -348,6 +351,10 @@ void draw(){
         }
         board.mode = "SWITCH";
         camera.locked = true;
+    }
+    else if(board.mode==="WIN"){
+        fill(255,255,255)
+        text("Player " + (board.turn + 1) + " Wins!",200,200);
     }
     //println(board.pawns[0].x + " " + board.pawns[0].y);
 };
