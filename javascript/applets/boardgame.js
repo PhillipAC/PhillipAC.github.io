@@ -71,7 +71,7 @@ var Board = function(){
     this.image = boardIMG; //Board Background
     this.turn = 0; //Index of pawn whose turn it is
     this.colors = [color(255,0,0), color(0,0,255), 
-                   color(0,255,255), color(0,255,0)];
+                   color(255,255,0), color(0,255,0)];
     this.mode = "START"; //Modes: START, SWITCH, ROLL, MOVE, CHECK, WIN
     this.x = 500; //Camera will target this location
     this.y = 400; //y-coordinate of camera targeting
@@ -96,7 +96,6 @@ Board.prototype.setupRender = function(){
     this.y = -100*sin(PI*frameCount/(5*180))+400;
 };
 Board.prototype.setup = function(){
-    if(mousePressed){
         var playerNum = 0;
         if(mouseY > 200 && mouseY < 240){
             if(mouseX > 40 && mouseX < 100){
@@ -115,7 +114,6 @@ Board.prototype.setup = function(){
         for(var i = 0; i < playerNum; i++){
             board.pawns.push(new Pawn(20, 620+30*i, this.colors[i], board.spaces));
         }
-    }
 };
 Board.prototype.update = function(){
     
@@ -181,27 +179,20 @@ var Dice = function(){
 {
 Dice.prototype.update = function(){
     if(this.mode !== "NOT"){
-        if(this.mode === "WAIT" && mousePressed){
-            this.mode = "ROLLING";
-            this.delayCount = 0;
-        }        
-        else if(this.mode === "ROLLING"){
+        if(this.mode === "ROLLING"){
             this.roll = floor(random(1,6.99));
             this.delayCount++;
             if(this.delayCount >= this.delay){
                 this.mode = "ROLLED";
             }
         }
-        if(this.mode === "ROLLED" && mousePressed){
-            this.mode = "NOT";
-        }
     }  
 };
-Dice.prototype.render = function(){
+Dice.prototype.render = function(turn){
     if(this.mode!=="NOT"){
         if(this.mode === "WAIT"){
             fill(255,255,255)
-            text("Roll!",200,200);
+            text("Player " + (turn + 1)+ " Roll!",200,200);
         }
         if(this.mode === "ROLLING" || this.mode === "ROLLED"){
             fill(255,255,255);
@@ -292,12 +283,29 @@ var board = new Board();
 //board.pawns.push(new Pawn(100, 700, color(255, 0, 255), board.spaces)); //
 var camera = new Camera(500,400, board);
 
+void mousePressed(){
+    
+    if (board.mode === "START"){
+        board.setup();
+    }
+    if (board.mode === "ROLL"){
+        if(dice.mode === "WAIT"){
+            dice.mode = "ROLLING";
+            dice.delayCount = 0;
+        }  
+        else if(dice.mode === "ROLLED"){
+            dice.mode = "NOT";
+        }
+        
+    }
+    
+};
+
 void draw(){
     camera.renderBoard();
     if(board.mode === "START"){
         camera.follow(board);
         board.setupRender();
-        board.setup();
         if(board.pawns.length > 0){
             board.mode = "SWITCH"
             camera.locked = true;
@@ -313,10 +321,10 @@ void draw(){
         }
     }
     else if (board.mode === "ROLL"){
+        //Pause for mousePressed function
         camera.follow(board.pawns[board.turn]);
-        //board.pawns[board.turn].moveSpace(1);
         dice.update();
-        dice.render();
+        dice.render(board.turn);
         if(dice.mode==="NOT"){
             board.mode = "MOVE";    
         }
