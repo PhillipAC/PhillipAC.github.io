@@ -19,6 +19,18 @@
             animation-duration: 2s;
             animation-iteration-count: infinite;
         }
+        .secret{
+            animation-name: secret;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes secret{
+            0% {background-color:red;}
+            25% {background-color:green;}
+            50% {background-color:blue;}
+            75% {background-color:yellow;}
+            100% {background-color:red;}
+        }
         @keyframes shaking{
             0%   {border-color:blue;}
             50%   {border-color:red;}
