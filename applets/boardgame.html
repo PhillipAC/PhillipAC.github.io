@@ -12,6 +12,19 @@
     <script>
       $(function(){$("#header").load("../layouts/header.html");});
     </script>
+    <style>
+        .shake{
+            border: 5px groove silver;
+            animation-name: shaking;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes shaking{
+            0%   {border-color:blue;}
+            50%   {border-color:red;}
+            100% {border-color:blue;}
+        }
+    </style>
 </head>
 <body>
  
@@ -20,13 +33,17 @@
     <div class="jumbotron text-center">
         <h1>Bridges & Shortcuts</h1>
     </div>
-    <canvas width="400" height="400" class="center-block" 
+    <canvas id = "game" width="400" height="400" class="center-block" 
       data-processing-sources="../javascript/applets/boardgame.js"></canvas>
     <p id = "Notes">
         This will be a turned based board game that players 1-4 can play.
-        Once again this project shows the power of Object-Oriented programming.
+        Once again this project shows the <span id="power">power</span> of Object-Oriented programming.
         More information will be posted when complete.
     </p>
 </div>
+    <script>
+        var shake = function(){$("#game").addClass("shake");};
+        document.getElementById("power").addEventListener("click",shake);
+    </script>
 </body>
 </html>
