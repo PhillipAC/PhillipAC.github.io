@@ -202,10 +202,10 @@ Dice.prototype.update = function(){
         }
     }  
 };
-Dice.prototype.render = function(turn){
+Dice.prototype.render = function(turn, color){
     if(this.mode!=="NOT"){
         if(this.mode === "WAIT"){
-            fill(255,255,255)
+            fill(color);
             text("Player " + (turn + 1)+ " Roll!",200,200);
         }
         if(this.mode === "ROLLING" || this.mode === "ROLLED"){
@@ -302,7 +302,7 @@ void mousePressed(){
     if (board.mode === "START"){
         board.setup();
     }
-    if (board.mode === "ROLL"){
+    else if (board.mode === "ROLL"){
         if(dice.mode === "WAIT"){
             dice.mode = "ROLLING";
             dice.delayCount = 0;
@@ -311,6 +311,19 @@ void mousePressed(){
             dice.mode = "NOT";
         }
         
+    }
+    else if (board.mode === "CHECK" || 
+             board.mode === "SWITCH" || 
+             board.mode === "MOVE"){
+                 console.log(board.mode);
+             }
+    else{
+        board.pawns = [];
+        board.turn = 0;
+        board.mode = "START";
+        dice.mode = "WAIT";
+        dice.roll = 0;
+        dice.delayCount = 0;
     }
     
 };
@@ -338,7 +351,7 @@ void draw(){
         //Pause for mousePressed function
         camera.follow(board.pawns[board.turn]);
         dice.update();
-        dice.render(board.turn);
+        dice.render(board.turn, board.colors[board.turn]);
         if(dice.mode==="NOT"){
             board.mode = "MOVE";    
         }
@@ -353,6 +366,9 @@ void draw(){
         }
         if(dice.roll <= 0){
            board.mode="CHECK";
+        }
+        if(board.pawns[board.turn].location === 69){
+            board.mode = board.turn;
         }
     }
     else if(board.mode==="CHECK"){
@@ -388,6 +404,10 @@ void draw(){
             camera.follow(board.pawns[board.turn]);
             board.pawns[board.turn].moveSpace(16);
         }
+    }
+    else{
+        fill(board.colors[board.mode]);
+        text("Player " + (board.mode+1) + " Wins!",200,200);
     }
     //println(board.pawns[0].x + " " + board.pawns[0].y);
 };
