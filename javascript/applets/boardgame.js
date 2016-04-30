@@ -96,27 +96,30 @@ Board.prototype.setupRender = function(){
     this.y = -100*sin(PI*frameCount/(5*180))+400;
 };
 Board.prototype.setup = function(){
-        var playerNum = 0;
-        if(mouseY > 200 && mouseY < 240){
-            if(mouseX > 40 && mouseX < 100){
-                var playerNum = 1;
-            }
-            if(mouseX > 125 && mouseX < 185){
-                var playerNum = 2;
-            }
-            if(mouseX > 215 && mouseX < 275){
-                var playerNum = 3;
-            }
-            if(mouseX > 300 && mouseX < 360){
-                var playerNum = 4;
-            }
+    var playerNum = 0;
+    if(mouseY > 200 && mouseY < 240){
+        if(mouseX > 40 && mouseX < 100){
+            var playerNum = 1;
         }
-        for(var i = 0; i < playerNum; i++){
-            board.pawns.push(new Pawn(20, 620+30*i, this.colors[i], board.spaces));
+        if(mouseX > 125 && mouseX < 185){
+            var playerNum = 2;
         }
+        if(mouseX > 215 && mouseX < 275){
+            var playerNum = 3;
+        }
+        if(mouseX > 300 && mouseX < 360){
+            var playerNum = 4;
+        }
+    }
+    for(var i = 0; i < playerNum; i++){
+        board.pawns.push(new Pawn(20, 620+30*i, this.colors[i], board.spaces));
+    }
 };
-Board.prototype.update = function(){
-    
+Board.prototype.nextTurn = function(){
+    this.turn++;
+    if(this.turn > this.pawns.length-1){
+        this.turn = 0;
+    }
 };
 }
 
@@ -229,7 +232,7 @@ var board = new Board();
     board.spaces.push(new Space(8,"NONE",280,560));
     board.spaces.push(new Space(9,"NONE",280,520));
     board.spaces.push(new Space(10,"NONE",320,520));
-    board.spaces.push(new Space(11,"NONE",360,520)); //Slide1
+    board.spaces.push(new Space(11,"SLIDE1",360,520)); //Slide1
     board.spaces.push(new Space(12,"NONE",400,520));
     board.spaces.push(new Space(13,"LADDER1",440,520)); //Ladder1
     board.spaces.push(new Space(14,"NONE",440,560));
@@ -275,7 +278,7 @@ var board = new Board();
     board.spaces.push(new Space(54,"NONE",240,200));
     board.spaces.push(new Space(55,"NONE",280,200));
     board.spaces.push(new Space(56,"SLIDE3",320,200)); //Slide3
-    board.spaces.push(new Space(57,"SLIDE3",360,200)); //Slide4
+    board.spaces.push(new Space(57,"SLIDE4",360,200)); //Slide4
     board.spaces.push(new Space(58,"NONE",400,200));
     board.spaces.push(new Space(59,"NONE",440,200));
     board.spaces.push(new Space(60,"NONE",480,200));
@@ -353,12 +356,38 @@ void draw(){
         }
     }
     else if(board.mode==="CHECK"){
-        board.turn++;
-        if(board.turn > board.pawns.length-1){
-            board.turn = 0;
+        var type = board.spaces[board.pawns[board.turn].location].type;
+        console.log(type);
+        if(type==="NONE")
+        {
+            board.nextTurn();
+            board.mode = "SWITCH";
+            camera.locked = true;
         }
-        board.mode = "SWITCH";
-        camera.locked = true;
+        else if(type==="SLIDE1"){
+            camera.follow(board.pawns[board.turn]);
+            board.pawns[board.turn].moveSpace(-11);
+        }
+        else if(type==="SLIDE2"){
+            camera.follow(board.pawns[board.turn]);
+            board.pawns[board.turn].moveSpace(-19);
+        }
+        else if(type==="SLIDE3"){
+            camera.follow(board.pawns[board.turn]);
+            board.pawns[board.turn].moveSpace(-24);
+        }
+        else if(type==="SLIDE4"){
+            camera.follow(board.pawns[board.turn]);
+            board.pawns[board.turn].moveSpace(-25);
+        }
+        else if(type==="LADDER1"){
+            camera.follow(board.pawns[board.turn]);
+            board.pawns[board.turn].moveSpace(16);
+        }
+        else if(type==="LADDER2"){
+            camera.follow(board.pawns[board.turn]);
+            board.pawns[board.turn].moveSpace(16);
+        }
     }
     //println(board.pawns[0].x + " " + board.pawns[0].y);
 };
