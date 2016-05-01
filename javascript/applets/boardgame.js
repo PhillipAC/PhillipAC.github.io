@@ -196,7 +196,6 @@ Dice.prototype.update = function(){
             secret.push(keyCode);
             keyCode=0;
         }
-        console.log(secret.toString(""));
         if(secret.toString("") === "38,38,40,40,37,39,37,39"){
             document.body.className+= " secret";        
         }
