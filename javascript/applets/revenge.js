@@ -326,13 +326,13 @@ var Game = function(){
             textSize(25);
             text("Khan's Revenge", 125, 50);
             textSize(18);
-            text("Press Space to begin!", 125, 124);
+            text("Press Space or Left to begin!", 125, 124);
             text("Controls:", 125, 200);
             text("Arrow Keys - Move", 125, 220);
             text("Space - Shoot", 125, 240);
             text("Click - Pause", 125, 260);
             text("Objective: Defeat the Space Dragon.", 75, 300);
-            if(keys[32]){play = true;
+            if(keys[32] || keys[LEFT]){play = true;
                 player.position = new PVector(-50, 200);
             }
     };
