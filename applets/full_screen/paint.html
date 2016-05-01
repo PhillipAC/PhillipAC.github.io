@@ -3,22 +3,20 @@
 <head>
     <title>Phillip Clontz | PAINT!</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="../../javascript/ProcessingJS/processing.js"></script>
+    <style>
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
 </head>
-<body id="bod">
+<body>
     <canvas width=100% height=100% id="canvas"></canvas>
-    <script>
-        // Get the canvas element form the page
-        var canvas = document.getElementById("canvas");
-         
-        /* Rresize the canvas to occupy the full page, 
-           by getting the widow width and height and setting it to canvas*/
-         
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
- 
-    //Done! Enjoy full page canvas!
+    <script src="../../javascript/applets/paint.js">
     </script>
 </body>
 </html>
