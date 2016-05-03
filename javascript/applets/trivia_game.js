@@ -13,13 +13,13 @@ var keys = [];
 noStroke();
 
 //Global Functions
-var isHovering(obj){
+var isHovering = function(obj){
     if (mouseX > obj.x && mouseX < obj.x+obj.w &&
         mouseY > obj.y && mouseY < obj.y+obj.h){
             return true;
         }
     return false;
-}//Returns true if mouse is hovering over obj
+};//Returns true if mouse is hovering over obj
 
 //Trivia card constructor
 var Card = function(question, answers, index, img){
@@ -71,7 +71,7 @@ Card.prototype.setLoc = function(x,y,w,h){
 }; //Sets the position and size of card
 Card.prototype.inputDis = function(){
     for(var i = 0, j = this.answers.length; i < j; i++){
-        answerObj = {x:this.x + 5,y:this.y + 15*(i+1) + 18,
+        var answerObj = {x:this.x + 5,y:this.y + 15*(i+1) + 18,
                      w:this.w-10, h:13}
         fill(0,0,0,0);
         //rect(answerObj.x, answerObj.y, answerObj.w, answerObj.h);
@@ -82,7 +82,24 @@ Card.prototype.inputDis = function(){
             }
 
     }
-} //Highlights answer mouse is over
+}; //Highlights answer mouse is over
+Card.prototype.checkSolution = function(i){
+    if (i === this.getSolutionIndex()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}; //Checks if "i" is the solution
+Card.prototype.click = function(){
+    for(var i = 0, j = this.answers.length; i < j; i++){
+        var answerObj = {x:this.x + 5,y:this.y + 15*(i+1) + 18,
+                     w:this.w-10, h:13};
+        if(isHovering(answerObj)){
+                return i;     
+        }
+    }    
+}; //Returns the index of the answer hovered over
 
 //Deck Constructor
 var Deck = function(){
@@ -193,9 +210,18 @@ void mousePressed(){
     mouse[mouseButton]=true;
     if(mouse[LEFT]){
         if(deck.size()>0){
-            mouse[LEFT]=false;
-            card = deck.takeCard(0);
-            deck2.addCard(card);
+            var answer = card.click();
+            if(answer !== undefined){
+                if(card.checkSolution(answer)){
+                    println("YOU DID IT!");
+                }
+                else{
+                    println("To bad...");
+                }
+                mouse[LEFT]=false;
+                card = deck.takeCard(0);
+                deck2.addCard(card);
+            }
         } //If there are cards in the deck pull one from the top
         else{
             deck = deck2;
@@ -214,4 +240,4 @@ void keyReleased(){keys[keyCode]=false;};
 void draw(){
     background(0,255,0); //Sets a background color
     card.read(); //Displays the current card
-}
+};
