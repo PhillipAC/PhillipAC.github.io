@@ -13,6 +13,7 @@ void mouseReleased(){mouse[mouseButton]=false;};
 var keys = [];
 void keyPressed(){keys[keyCode]=true;};
 void keyReleased(){keys[keyCode]=false;};
+
 //Board
 var Cell = function(x,y,w,h){
     this.x = x;
