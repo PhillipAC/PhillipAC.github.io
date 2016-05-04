@@ -20,11 +20,20 @@ canvas{
     border-style: ridge;
 }
 
-.post{
+ .post{
   margin-top: 10px;
   background: #ffffff;
   /*border: 5px black groove;*/
   padding: 10px;
   box-shadow: black 0.3em 0.3em 0.3em;
   margin-bottom: 10px;
+}
+
+#notes {
+   margin-top: 10px;
+  background: #ffffff;
+  /*border: 5px black groove;*/
+  padding: 10px;
+  box-shadow: black 0.3em 0.3em 0.3em;
+  margin-bottom: 10px;   
 }
