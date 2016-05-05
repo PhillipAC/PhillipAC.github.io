@@ -1,9 +1,15 @@
+background(256,256,256);
+fill(0,0,0);
+text("Loading...");
 //Importing Images for Game
 /* @pjs preload="../images/boardgame.png""; */
 PImage boardIMG = loadImage("../images/boardgame.png");
 //Canvas Settup
 void setup() { 
-  size(400, 400); 
+  size(400, 400);
+  background(256,256,256);
+  fill(0,0,0);
+  text("Loading...");
 } 
 var width = 400;
 var height = 400;
