@@ -65,6 +65,3 @@ Blog.prototype.display = function(element){
 Blog.prototype.display_single = function(i, element){
     this.posts[i].display(element);
 }
-Blog.prototype.display_single = function(i, element){
-    this.posts[i].display(element);
-}
