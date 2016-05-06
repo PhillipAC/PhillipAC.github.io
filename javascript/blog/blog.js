@@ -1,3 +1,17 @@
+var getUrlVars = function()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
+
 var Post = function(id, title, body, date){
     this.id = id;
     this.title = title;
@@ -7,7 +21,7 @@ var Post = function(id, title, body, date){
 Post.prototype.display = function(element){
     var $mainElement = $("<div></div>")
                         .addClass("post");
-    var $title = $("<h2></h2>")
+    var $title = $("<a href='/static_pages/post.html?id=" + this.id + "'><h2></h2></a>")
                         .text(this.title);
     var $body = $("<div></div>")
                         .html(this.body);
@@ -27,7 +41,7 @@ Blog.prototype.getAmount = function(i){
     else{return this.posts.length-i;}
 };
 Blog.prototype.newPost = function(title,body,date){
-    this.posts.push(new Post(this.getAmount(),title,body,date));
+    this.posts.push(new Post(this.getAmount(0),title,body,date));
 };
 Blog.prototype.getPost = function(i){
     return this.posts[i];
@@ -48,3 +62,9 @@ Blog.prototype.display = function(element){
         this.posts[i].display(element);
     }
 };
+Blog.prototype.display_single = function(i, element){
+    this.posts[i].display(element);
+}
+Blog.prototype.display_single = function(i, element){
+    this.posts[i].display(element);
+}

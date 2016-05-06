@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Phillip Clontz | Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+      $(function(){$("#header").load("../layouts/header.html");});
+    </script>
+</head>
+<body>
+<div id ="header"></div>
+<div class="container">
+    <div class="jumbotron text-center">
+    <h1>Blog Post</h1>
+    </div>
+        <div id="Blog"></div>
+</div>
+<script src="../javascript/blog/blog.js"></script>
+<script src="../javascript/blog/blog_posts.js"></script>
+<script>
+    getUrlVars()
+    mainBlog.display_single(getUrlVars().id, "#Blog");
+</script>
+</body>
+</html>
