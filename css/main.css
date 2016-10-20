@@ -33,11 +33,8 @@ canvas{
     margin: 0 auto;
 }
 
-.carousel {
-  max-height: 700px;
-  overflow: hidden;
-}
-.carousel > .item img {
-    width: 100%;
-    height: auto;
+.peopleCarouselImg img {
+  width: auto;
+  height: 225px;
+  max-height: 225px;
 }
