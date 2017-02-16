@@ -1,0 +1,335 @@
+<!Doctype HTML>
+<head>
+	<title>Scholarsbowl Scoresheet</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		body{
+			background-color: lavender;
+		}
+		#logo {
+			color: white;
+			text-align: center;
+		}
+		.content{
+			background-color: white;
+			border: 2px solid black;
+			border-radius: 5px;
+			padding: 10px;
+			margin: 10px;
+			box-shadow: 2px 2px 2px 2px black;
+		}
+		.hideCellStyle{
+			background-color: white;
+			border-top: none !important;
+			border-bottom: none !important;
+		}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+	<h1 id="logo">Scholarsbowl Scoresheet</h1>
+</nav>
+<div class="container" data-ng-app="scholarsbowl" data-ng-controller="scoresheet" >
+	<div class="content">
+		<form id="sheet">
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered table-hover text-center">
+					<thead>
+						<tr>
+							<td colspan="3">None</td>
+							<td class="hideCellStyle"></td>
+							<td colspan="6">{{teams[0].name}}</td>
+							<td class="hideCellStyle"></td>
+							<td colspan="6">{{teams[1].name}}</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Missed</td>
+							<td>A</td>
+							<td>B</td>
+							<td class="hideCellStyle"></td>
+							<td><select  data-ng-model="rounds[0].squads[0].players[0]" data-ng-options="member.name for member in teams[0].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[0].squads[0].players[1]" data-ng-options="member.name for member in teams[0].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[0].squads[0].players[2]" data-ng-options="member.name for member in teams[0].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[0].squads[0].players[3]" data-ng-options="member.name for member in teams[0].members track by member.id"></select></td>
+							<td>A</td>
+							<td>B</td>
+							<td class="hideCellStyle"></td>
+							<td><select  data-ng-model="rounds[0].squads[1].players[0]" data-ng-options="member.name for member in teams[1].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[0].squads[1].players[1]" data-ng-options="member.name for member in teams[1].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[0].squads[1].players[2]" data-ng-options="member.name for member in teams[1].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[0].squads[1].players[3]" data-ng-options="member.name for member in teams[1].members track by member.id"></select></td>
+							<td>A</td>
+							<td>B</td>
+						</tr>
+						<tr data-ng-repeat="question in rounds[0].questions">
+							<td><input type="radio" name="question_{{question.id}}" value="-1" data-ng-model="question.playerId" required></td>
+							<td><input type="radio" name="question_{{question.id}}A" value="-1" data-ng-model="question.bonusIdA" required></td>
+							<td><input type="radio" name="quesiton_{{question.id}}B" value="-1" data-ng-model="question.bonusIdB" required></td>
+							<td class="hideCellStyle"></td>
+							<td data-ng-repeat="player in rounds[0].squads[0].players"><input type="radio" name="question_{{question.id}}" value="{{player.id}}" data-ng-model="question.playerId" required></td>
+							<td><input type="radio" name="question_{{question.id}}A" value="{{teams[0].id}}" data-ng-model="question.bonusIdA" required></td>
+							<td><input type="radio" name="quesiton_{{question.id}}B" value="{{teams[0].id}}" data-ng-model="question.bonusIdB" required></td>
+							<td class="hideCellStyle">{{question.id+1}}</td>
+							<td data-ng-repeat="player in rounds[0].squads[1].players"><input type="radio" name="question_{{question.id}}" value="{{player.id}}" data-ng-model="question.playerId" required></td>
+							<td><input type="radio" name="question_{{question.id}}A" value="{{teams[1].id}}" data-ng-model="question.bonusIdA" required></td>
+							<td><input type="radio" name="quesiton_{{question.id}}B" value="{{teams[1].id}}" data-ng-model="question.bonusIdB" required></td>
+						</tr>
+						<tr>
+							<td data-ng-repeat="x in [0,1,2]"></td>
+							<td class="hideCellStyle"></td>
+							<td data-ng-repeat="player in rounds[0].squads[0].players">
+								{{game.score(player,rounds[0].questions)}}
+							</td>
+							<td>{{game.bonusScoreA(teams[0],rounds[0].questions)}}</td>
+							<td>{{game.bonusScoreB(teams[0],rounds[0].questions)}}</td>
+							<td class="hideCellStyle"></td>
+							<td data-ng-repeat="player in rounds[0].squads[1].players">
+								{{game.score(player,rounds[0].questions)}}
+							</td>
+							<td>{{game.bonusScoreA(teams[1],rounds[0].questions)}}</td>
+							<td>{{game.bonusScoreB(teams[1],rounds[0].questions)}}</td>
+						</tr>
+						<tr>
+							<td colspan="3">Worksheet Round</td>
+							<td class="hideCellStyle"></td>
+							<td colspan="6"><input type="number" data-ng-model="worksheet.scores[0]"></td>
+							<td class="hideCellStyle"></td>
+							<td colspan="6"><input type="number" data-ng-model="worksheet.scores[1]"></td>
+						</tr>
+						<tr>
+							<td>Missed</td>
+							<td>A</td>
+							<td>B</td>
+							<td class="hideCellStyle"></td>
+							<td><select  data-ng-model="rounds[1].squads[0].players[0]" data-ng-options="member.name for member in teams[0].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[1].squads[0].players[1]" data-ng-options="member.name for member in teams[0].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[1].squads[0].players[2]" data-ng-options="member.name for member in teams[0].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[1].squads[0].players[3]" data-ng-options="member.name for member in teams[0].members track by member.id"></select></td>
+							<td>A</td>
+							<td>B</td>
+							<td class="hideCellStyle"></td>
+							<td><select  data-ng-model="rounds[1].squads[1].players[0]" data-ng-options="member.name for member in teams[1].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[1].squads[1].players[1]" data-ng-options="member.name for member in teams[1].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[1].squads[1].players[2]" data-ng-options="member.name for member in teams[1].members track by member.id"></select></td>
+							<td><select  data-ng-model="rounds[1].squads[1].players[3]" data-ng-options="member.name for member in teams[1].members track by member.id"></select></td>
+							<td>A</td>
+							<td>B</td>
+						</tr>			
+						<tr data-ng-repeat="question in rounds[1].questions">
+							<td><input type="radio" name="question_{{question.id}}" value="-1" data-ng-model="question.playerId" required></td>
+							<td><input type="radio" name="question_{{question.id}}A" value="-1" data-ng-model="question.bonusIdA" required></td>
+							<td><input type="radio" name="quesiton_{{question.id}}B" value="-1" data-ng-model="question.bonusIdB" required></td>
+							<td class="hideCellStyle"></td>
+							<td data-ng-repeat="player in rounds[1].squads[0].players"><input type="radio" name="question_{{question.id}}" value="{{player.id}}" data-ng-model="question.playerId" required></td>
+							<td><input type="radio" name="question_{{question.id}}A" value="{{teams[0].id}}" data-ng-model="question.bonusIdA" required></td>
+							<td><input type="radio" name="quesiton_{{question.id}}B" value="{{teams[0].id}}" data-ng-model="question.bonusIdB" required></td>
+							<td class="hideCellStyle">{{question.id+1}}</td>
+							<td data-ng-repeat="player in rounds[1].squads[1].players"><input type="radio" name="question_{{question.id}}" value="{{player.id}}" data-ng-model="question.playerId" required></td>
+							<td><input type="radio" name="question_{{question.id}}A" value="{{teams[1].id}}" data-ng-model="question.bonusIdA" required></td>
+							<td><input type="radio" name="quesiton_{{question.id}}B" value="{{teams[1].id}}" data-ng-model="question.bonusIdB" required></td>
+						</tr>						
+						<tr>
+							<td data-ng-repeat="x in [0,1,2]"></td>
+							<td class="hideCellStyle"></td>
+							<td data-ng-repeat="player in rounds[1].squads[0].players">
+								{{game.score(player,rounds[1].questions)}}
+							</td>
+							<td>{{game.bonusScoreA(teams[0],rounds[1].questions)}}</td>
+							<td>{{game.bonusScoreB(teams[0],rounds[1].questions)}}</td>
+							<td class="hideCellStyle"></td>
+							<td data-ng-repeat="player in rounds[1].squads[1].players">
+								{{game.score(player,rounds[1].questions)}}
+							</td>
+							<td>{{game.bonusScoreA(teams[1],rounds[1].questions)}}</td>
+							<td>{{game.bonusScoreB(teams[1],rounds[1].questions)}}</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3">Overall Scores</td>
+							<td class="hideCellStyle"></td>
+							<td colspan="6">{{game.teamScore(teams[0],questions,worksheet)}}</td>
+							<td class="hideCellStyle"></td>
+							<td colspan="6">{{game.teamScore(teams[1],questions,worksheet)}}</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<a href="#" class="btn btn-default" id="summaryToggle">Summary Table</a>
+		</form>
+	</div>
+	<div class="content table-responsive" id="summaryTable" hidden>
+		<table class="table table-bordered table-striped table-hover">
+			<thead>
+				<tr>
+					<td>Question #</td>
+					<td>Player</td>
+					<td>BonusA</td>
+					<td>BonusB</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="question in questions">
+					<td>{{(question.id + 1)}}</td>
+					<td data-ng-if="question.playerId > -1">{{players[question.playerId].name}}</td><td data-ng-if="question.playerId < 0">None</td>
+					<td data-ng-if="question.bonusIdA > -1">{{teams[question.bonusIdA].name}}</td><td data-ng-if="question.bonusIdA < 0">None</td>
+					<td data-ng-if="question.bonusIdB > -1">{{teams[question.bonusIdB].name}}</td><td data-ng-if="question.bonusIdB < 0">None</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script>
+
+	$("#summaryToggle").click(function(e){
+		e.preventDefault();
+		$("#summaryTable").slideToggle();
+		
+	});
+
+	var Player = function(id, name){
+		this.id = id;
+		this.name = name;
+		this.scores = [];
+		this.team;
+	};
+	
+	var Question = function(id){
+		this.id = id;
+		this.playerId = -1;
+		this.bonusIdA = -1;
+		this.bonusIdB = -1;
+	};
+	
+	var Team = function(id, name){
+		this.id = id;
+		this.name = name;
+		this.members = [];
+	};
+	
+	var Worksheet = function(id){
+		this.id = id
+		this.scores = [0,0];
+	};
+	
+	var Round = function(id, questions){
+		this.id = id;
+		this.squads = [];
+		this.questions = questions;
+	};
+	Round.prototype.question = function(questionId){
+		for(var i = 0; i < this.questions.length; i++){
+			if(questionId == this.questions[i].id){
+				return this.questions[i];
+			}
+		}
+		return false;
+	}
+	Round.prototype.squad = function(squadId){
+		for(var i = 0; i < this.squads.length; i++){
+			if(squadId == this.squads[i].id){
+				return this.squad[i];
+			}
+		}
+		return false;
+	}
+	
+	var Squad = function(players){
+		this.players = players;
+	};
+	
+	var Game = function(id, title){
+		this.id = id;
+		this.title = title
+	};
+	Game.prototype.score = function(player, questions){
+		var score = 0;
+		for(var i = 0; i < questions.length; i++){
+			if(questions[i].playerId==player.id){
+				score+=10;
+			} 
+		}
+		return score;
+	}
+	Game.prototype.bonusScoreA = function(team, questions){
+		var score = 0;
+		for(var i = 0; i < questions.length; i++){
+			if(questions[i].bonusIdA==team.id){
+				score+=10;
+			}
+		}
+		return score;
+	}
+	Game.prototype.bonusScoreB = function(team, questions){
+		var score = 0;
+		for(var i = 0; i < questions.length; i++){
+			if(questions[i].bonusIdB==team.id){
+				score+=10;
+			}
+		}
+		return score;
+	}
+	Game.prototype.teamScore = function(team, questions, worksheet){
+		var score = 0;
+		for(var i = 0; i < team.members.length; i++){
+			score+=this.score(team.members[i], questions);
+		}
+		score += this.bonusScoreA(team,questions);
+		score += this.bonusScoreB(team,questions);
+		score += worksheet.scores[team.id];
+		return score;
+	}
+	
+	var app = angular.module('scholarsbowl', []);
+	app.controller('scoresheet', function($scope){
+		window.scope = $scope;
+		//Initialize Players
+		$scope.players = [];
+		for(var i = 0; i < 16; i++){
+			$scope.players.push(new Player(i, "Player_" + (i)));
+		}
+		var halfCount = $scope.players.length/2;
+		
+		//Initialize Teams
+		$scope.teams = [];
+		for(var i = 0; i < 2; i++){
+			$scope.teams.push(new Team(i, "Team_" +  String.fromCharCode(97 + i).toUpperCase()));
+			for(var j = i*halfCount; j < (i+1)*halfCount; j++){
+				$scope.teams[i].members.push($scope.players[j]);
+				$scope.players[j].team = $scope.teams[i].id;
+			}
+		}
+		
+		//Initialize Rounds and Questions
+		$scope.rounds = [];
+		$scope.questions = [];
+		for(var i = 0; i < 2; i++){
+			var roundQuestions = [];
+			for(var j = 0; j < 10; j++){
+				roundQuestions.push(new Question(j+i*10));
+			}
+			$scope.rounds.push(new Round(i, roundQuestions));
+			$scope.questions = $scope.questions.concat(roundQuestions);
+			var squad1 = [];
+			var squad2 = [];
+			for(var j = 0; j < 4; j++){
+				squad1.push($scope.teams[0].members[j+4*i]);
+				squad2.push($scope.teams[1].members[j+4*i]);
+			}
+			$scope.rounds[i].squads.push(new Squad(squad1));
+			$scope.rounds[i].squads.push(new Squad(squad2));
+		}
+		
+		//Initialize Worksheet
+		$scope.worksheet = new Worksheet(0);
+		
+		$scope.game = new Game(0, "Game_0");
+		
+	});
+</script>
+</body>
