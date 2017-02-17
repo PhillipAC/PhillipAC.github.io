@@ -158,7 +158,24 @@
 				</table>
 			</div>
 			<a href="#" class="btn btn-default" id="summaryToggle">Summary Table</a>
+			<a href="#" class="btn btn-default" id="nameToggle">Name Table</a>
 		</form>
+	</div>
+	<div class="content table-responsive" id="nameTable" hidden>
+		<table class="table table-bordered table-striped table-hover">
+			<thead>
+				<tr>
+					<td>Player Id</td>
+					<td>Player Name</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="player in players">
+					<td>Player_{{player.id}}</td>
+					<td><input type="text" ng-model="player.name"></input></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<div class="content table-responsive" id="summaryTable" hidden>
 		<table class="table table-bordered table-striped table-hover">
@@ -189,7 +206,11 @@
 	$("#summaryToggle").click(function(e){
 		e.preventDefault();
 		$("#summaryTable").slideToggle();
-		
+	});
+	
+	$("#nameToggle").click(function(e){
+		e.preventDefault();
+		$("#nameTable").slideToggle();
 	});
 
 	var Player = function(id, name){
