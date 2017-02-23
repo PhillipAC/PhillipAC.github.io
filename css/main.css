@@ -20,7 +20,7 @@ canvas{
     border-style: ridge;
 }
 
-#Notes, .post{
+#Notes, .post, .content{
   margin-top: 10px;
   background: #ffffff;
   /*border: 5px black groove;*/
@@ -37,4 +37,13 @@ canvas{
   width: auto;
   height: 225px;
   max-height: 225px;
+}
+
+.hideCellStyle{
+	background-color: white;
+	border-top: none !important;
+	border-bottom: none !important;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  	display: none !important;
 }
