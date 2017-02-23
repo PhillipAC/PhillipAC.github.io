@@ -139,8 +139,9 @@
 				</table>
 			</div>
 			<br>
-			<a href="#" class="btn btn-success" id="summaryToggle">Summary Table</a>
-			<a href="#" class="btn btn-info" id="nameToggle">Name Table</a>
+			<a href="#" class="btn btn-success" id="summaryToggle">Question Summary Table</a>
+			<a href="#" class="btn btn-success" id="summaryPlayerToggle">Player Summary Table</a>
+			<a href="#" class="btn btn-info" id="nameToggle">Player Name Table</a>
 			<a href="#" class="btn btn-info" id="teamNameToggle">Team Name Table</a>
 		</form>
 	</div>
@@ -192,6 +193,22 @@
 					<td data-ng-if="question.playerId > -1">{{players[question.playerId].name}}</td><td data-ng-if="question.playerId < 0">None</td>
 					<td data-ng-if="question.bonusIdA > -1">{{teams[question.bonusIdA].name}}</td><td data-ng-if="question.bonusIdA < 0">None</td>
 					<td data-ng-if="question.bonusIdB > -1">{{teams[question.bonusIdB].name}}</td><td data-ng-if="question.bonusIdB < 0">None</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="content table-responsive" id="playerSummaryTable" hidden>
+		<table class="table table-border table-striped table-hover">
+			<thead>
+				<tr>
+					<td>Player</td>
+					<td>Points</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="player in players'">
+					<td>{{player.name}}</td>
+					<td>{{game.score(player, questions)}}</td>
 				</tr>
 			</tbody>
 		</table>

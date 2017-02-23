@@ -3,6 +3,11 @@ $("#summaryToggle").click(function(e){
 	$("#summaryTable").slideToggle();
 });
 
+$("#summaryPlayerToggle").click(function(e){
+	e.preventDefault();
+	$("#playerSummaryTable").slideToggle();
+});
+
 $("#nameToggle").click(function(e){
 	e.preventDefault();
 	$("#nameTable").slideToggle();
