@@ -73,7 +73,7 @@
 							<td>{{game.bonusScoreB(teams[1],rounds[0].questions)}}</td>
 						</tr>
 						<tr>
-							<td colspan="3">Worksheet Round</td>
+							<td colspan="3">Worksheet</td>
 							<td class="hideCellStyle"></td>
 							<td colspan="6"><input type="number" data-ng-model="worksheet.scores[0]"></td>
 							<td class="hideCellStyle"></td>
@@ -138,8 +138,9 @@
 					</tfoot>
 				</table>
 			</div>
-			<a href="#" class="btn btn-default" id="summaryToggle">Summary Table</a>
-			<a href="#" class="btn btn-default" id="nameToggle">Name Table</a>
+			<br>
+			<a href="#" class="btn btn-success" id="summaryToggle">Summary Table</a>
+			<a href="#" class="btn btn-info" id="nameToggle">Name Table</a>
 		</form>
 	</div>
 	<div class="content table-responsive" id="nameTable" hidden>
