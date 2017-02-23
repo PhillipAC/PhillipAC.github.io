@@ -141,6 +141,7 @@
 			<br>
 			<a href="#" class="btn btn-success" id="summaryToggle">Summary Table</a>
 			<a href="#" class="btn btn-info" id="nameToggle">Name Table</a>
+			<a href="#" class="btn btn-info" id="teamNameToggle">Team Name Table</a>
 		</form>
 	</div>
 	<div class="content table-responsive" id="nameTable" hidden>
@@ -155,6 +156,22 @@
 				<tr data-ng-repeat="player in players">
 					<td>Player_{{player.id}}</td>
 					<td><input type="text" ng-model="player.name"></input></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="content table-responsive" id="teamNameTable" hidden>
+		<table class="table table-bordered table-striped table-hover">
+			<thead>
+				<tr>
+					<td>Team Id</td>
+					<td>Team Name</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="team in teams">
+					<td>Team_{{letterFromNumber(team.id)}}</td>
+					<td><input type="text" ng-model="team.name"></input></td>
 				</tr>
 			</tbody>
 		</table>

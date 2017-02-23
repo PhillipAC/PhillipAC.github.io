@@ -8,6 +8,11 @@ $("#nameToggle").click(function(e){
 	$("#nameTable").slideToggle();
 });
 
+$("#teamNameToggle").click(function(e){
+	e.preventDefault();
+	$("#teamNameTable").slideToggle();
+});
+
 var Player = function(id, name){
 	this.id = id;
 	this.name = name;
@@ -103,7 +108,14 @@ Game.prototype.teamScore = function(team, questions, worksheet){
 
 var app = angular.module('scholarsbowl', []);
 app.controller('scoresheet', function($scope){
+	//For debugging
 	window.scope = $scope;
+	
+	//Helper Function
+	$scope.letterFromNumber = function(interger){
+		return String.fromCharCode(97 + interger).toUpperCase()
+	}
+	
 	//Initialize Players
 	$scope.players = [];
 	for(var i = 0; i < 16; i++){
@@ -114,7 +126,7 @@ app.controller('scoresheet', function($scope){
 	//Initialize Teams
 	$scope.teams = [];
 	for(var i = 0; i < 2; i++){
-		$scope.teams.push(new Team(i, "Team_" +  String.fromCharCode(97 + i).toUpperCase()));
+		$scope.teams.push(new Team(i, "Team_" +  $scope.letterFromNumber(i)));
 		for(var j = i*halfCount; j < (i+1)*halfCount; j++){
 			$scope.teams[i].members.push($scope.players[j]);
 			$scope.players[j].team = $scope.teams[i].id;
@@ -140,7 +152,7 @@ app.controller('scoresheet', function($scope){
 		$scope.rounds[i].squads.push(new Squad(squad1));
 		$scope.rounds[i].squads.push(new Squad(squad2));
 	}
-	
+
 	//Initialize Worksheet
 	$scope.worksheet = new Worksheet(0);
 	
