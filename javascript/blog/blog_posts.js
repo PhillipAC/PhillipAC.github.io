@@ -26,3 +26,9 @@ mainBlog.newPost(
     "I absolutly love building applications that other people can use. Over the past year I have learned to program web apps using the Ruby on Rails framework. Today I have added a new section to my portfolio to show off a few projects I have made. Feel free to take a look at the code!",
     "9/24/2016"
 );
+mainBlog.newPost(
+    "Angular JS - Scholars Bowl",
+    "I Have added a new application that uses AngularJS. This new application allows users to" +
+        "use a virtual scholars bowl score sheet to keep track of their information. Give it a shot!",
+    "6/17/2017"
+);
