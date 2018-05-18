@@ -32,3 +32,9 @@ mainBlog.newPost(
         "use a virtual scholars bowl score sheet to keep track of their information. Give it a shot!",
     "6/17/2017"
 );
+mainBlog.newPost(
+    "Software Engineer",
+    "I realized that I have not updated this website very much since getting a job as a software" + 
+    " engineer. I am currently updating a few things to keep it more current with what I am up to.",
+    "5/18/2018"
+);
