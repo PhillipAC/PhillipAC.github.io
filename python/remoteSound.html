@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Remote Sound | Phillip Clontz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="../javascript/ProcessingJS/processing.js"></script>
+    <script src="../javascript/directorySlider.js"></script>
+    <script>
+      $(function(){$("#header").load("../layouts/header.html");});
+    </script>
+</head>
+<body>
+<div id="header"></div>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Remote Sound</h1>
+    </div>
+    <div id = "Notes">
+        <p>
+			The idea behind the Remote Sound project was to have a device
+			setup to play music for my son to help him go to sleep when 
+			he moved into his own room. The original idea was simple 
+			hit a button, play music. Around the time I began this 
+			project Amazon had a discount on their Dash buttons and 
+			I began wondering if I could use the devices with my project 
+			to create a remote button. 
+		</p>
+		<p>
+			After a little research I learned that the Dash buttons 
+			would turn on and connect to the local network and then 
+			send a request to the amazon servers when the button was 
+			pressed and then turn off. I decided to write a program 
+			to sniff my local network and detect when the amazon 
+			button connected at which point the program would start, 
+			or stop, playing music. 
+		</p>
+		<p>
+			Eventually I also decided that I would provide the ability 
+			to hardwire a button to the Raspberry Pi just in case the 
+			remote was lost or we were just in the room. 
+			The Git respository for Stranger Lights can be found at 
+			<a href="https://github.com/PhillipAC/strangerLights">
+				https://github.com/PhillipAC/strangerLights
+			</a>
+		</p>
+    </div>
+</div>
+</body>
+</html>
