@@ -38,3 +38,8 @@ mainBlog.newPost(
     " engineer. I am currently updating a few things to keep it more current with what I am up to.",
     "5/18/2018"
 );
+mainBlog.newPost(
+	"Halloween",
+	"As we get to the end of September we are nearing one of my favorite months, October. One of the reasons I love the month, besides the weather, is because it ends with a holiday that lets me channel my creative side. Over the past several years since moving into my house every Halloween I try to add something new to my decorations. It started with just a pressure sensor made out of two cardboard sheets and some foil attached to a raspberry pi and arduino nano. When the trick or treaters would come up to my door they were greeted with a short LED show around my door and the theme to Stranger Things. The code that I use can be found on my github page. https://github.com/PhillipAC/strangerLights",
+	"9/28/2019"
+);
