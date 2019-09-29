@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Motion Shake | Phillip Clontz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="../javascript/ProcessingJS/processing.js"></script>
+    <script src="../javascript/directorySlider.js"></script>
+    <script>
+      $(function(){$("#header").load("../layouts/header.html");});
+    </script>
+</head>
+<body>
+<div id="header"></div>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Motion Shake</h1>
+    </div>
+    <div id = "Notes">
+        <p>
+			The idea behind the Motion Shake project was to create a device
+			that would shake a fake cage when someone walks in front of it.
+			To accomplish this idea I decided to use a PIR sensor to detect
+			the motion and two vibration motors to shake the cage with an 
+			Arduino to tie everything together. The cage 
+			itself was a small do it yourself project. It was created by 
+			using two laundry baskets facing eachother and spray painted gray.
+			I put a small pumpkin headed creature inside of it.
+		</p>
+		<p>
+			The program itself is very simple. It waits for a HIGH signal from
+			the PIR sensor at which point it will loop 6 times. Since the
+			motors are attached to digital pins on an Arduino I use the modulo
+			operation to determine which pin to set to HIGH and then after a second
+			turn back to LOW. As such it will cycle through however many motors
+			that are attached. Afterwards it waits for five seconds before attempting
+			to detect motion.
+		</p>
+		<p>
+			The Git respository for Motion Shake can be found at 
+			<a href="https://github.com/PhillipAC/motionShake">
+				https://github.com/PhillipAC/motionShake
+			</a>
+		</p>
+    </div>
+	<div class="embeddedItem">
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/hzs1wsswwIg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+		</iframe>
+	</div>
+</div>
+</body>
+</html>
