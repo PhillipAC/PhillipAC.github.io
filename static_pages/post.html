@@ -21,9 +21,18 @@
         <div id="Blog"></div>
 </div>
 <script src="../javascript/blog/blog.js"></script>
-<script src="../javascript/blog/blog_posts.js"></script>
-<script>
-    mainBlog.display_single(getUrlVars().id, "#Blog");
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+  var loadBlog = function(){
+      var mainBlog = new Blog("1Xs_9pZUfjjERK8WdlMsc1Y6Z39OJ66jw9Ofp73CPo9M", "#Blog");
+      mainBlog.getPost(getUrlVars().id);
+    }
+  // Load the Visualization API and the corechart package.
+  google.charts.load('current', {'packages':['corechart']});
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.charts.setOnLoadCallback(loadBlog);
+
 </script>
 </body>
 </html>

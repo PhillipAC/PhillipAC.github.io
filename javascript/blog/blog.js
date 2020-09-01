@@ -33,35 +33,63 @@ Post.prototype.display = function(element){
     $mainElement.appendTo($(element));
 };
 
-var Blog = function(){
+var Blog = function(dataSource, element){
+    this.dataSource = `https://docs.google.com/spreadsheets/d/${dataSource}/gviz/tq?gid=0&headers=1&tq=`;
     this.posts = []; 
+    this.element = element;
 };
-Blog.prototype.getAmount = function(i){
-    if(i !== undefined){return this.posts.length;}
-    else{return this.posts.length-i;}
+Blog.prototype.getAmount = function(id){
+    if(id == undefined)
+    {
+        return this.posts.length;
+    }
+    else
+    {
+        return this.posts.length-id;
+    }
 };
-Blog.prototype.newPost = function(title,body,date){
-    this.posts.push(new Post(this.getAmount(0),title,body,date));
+Blog.prototype.getPost = function(id){
+    var queryString = encodeURIComponent(`SELECT * WHERE A = ${id}`);
+    var query = new google.visualization.Query(this.dataSource+queryString);
+    query.send(function(response){this.loadResponse(response, this)}.bind(this));
 };
-Blog.prototype.getPost = function(i){
-    return this.posts[i];
-    
-};
-Blog.prototype.deletePost = function(){
-    this.posts.splice(i, 1);
-};
-Blog.prototype.updatePost = function(index, title, body, date){
-    var post = this.getPost(index);
-    post.title = title;
-    post.body = body;
-    post.date = date;
-    this.posts[index]=post;
-};
+Blog.prototype.getRangeAsc = function(id, count){
+    var queryString = encodeURIComponent(`select * where A >= ${id} limit ${count}`);
+    var query = new google.visualization.Query(this.dataSource+queryString);
+    query.send(function(response){this.loadResponse(response, this)}.bind(this));
+}
+Blog.prototype.getRangeDesc = function(count, skip){
+    var queryString = encodeURIComponent(`select * order by A desc limit ${count} offset ${skip}`);
+    var query = new google.visualization.Query(this.dataSource+queryString);
+    query.send(function(response){this.loadResponse(response, this)}.bind(this));
+}
+Blog.prototype.loadResponse = function(response)
+{
+    var data = response.getDataTable();
+    var responseAmount = data.getNumberOfRows();
+    for (var i = 0; i < responseAmount; i++)
+    {
+        this.posts.push(new Post(data.getValue(i, 0), data.getValue(i,1), data.getValue(i,2), data.getValue(i,3)));
+    }
+    this.posts.sort(function(a, b){ return a.id - b.id });
+    this.display(this.element);
+}
 Blog.prototype.display = function(element){
     for(var i = this.posts.length-1; i >= 0; i--){
         this.posts[i].display(element);
     }
 };
-Blog.prototype.display_single = function(i, element){
-    this.posts[i].display(element);
+Blog.prototype.addButtons = function(page, element)
+{
+    console.log(page);
+    page = page == undefined ? 1 : Number(page);
+    $(element).addClass("blogNavigation")
+    if (page !== undefined && page !== 1)
+    {
+        var backButton = $(`<a class="left" href="/index.html?page=${page-1}"></a>`).text("Newer");
+        $(element).append(backButton);
+    }
+    
+    var forwardButton = $(`<a class="right" href="/index.html?page=${(page+1)}"></a>`).text("Older");
+    $(element).append(forwardButton);
 }
