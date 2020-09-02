@@ -65,7 +65,7 @@ Blog.prototype.getRangeDesc = function(count, skip){
 }
 Blog.prototype.loadResponse = function(response)
 {
-    if(false)//!response.isError())
+    if(!response.isError())
     {
         var data = response.getDataTable();
         var responseAmount = data.getNumberOfRows();
