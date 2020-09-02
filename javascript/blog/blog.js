@@ -65,14 +65,19 @@ Blog.prototype.getRangeDesc = function(count, skip){
 }
 Blog.prototype.loadResponse = function(response)
 {
-    var data = response.getDataTable();
-    var responseAmount = data.getNumberOfRows();
-    for (var i = 0; i < responseAmount; i++)
+    if(false)//!response.isError())
     {
-        this.posts.push(new Post(data.getValue(i, 0), data.getValue(i,1), data.getValue(i,2), data.getValue(i,3)));
+        var data = response.getDataTable();
+        var responseAmount = data.getNumberOfRows();
+        for (var i = 0; i < responseAmount; i++)
+        {
+            this.posts.push(new Post(data.getValue(i, 0), data.getValue(i,1), data.getValue(i,2), data.getValue(i,3)));
+        }
+        this.posts.sort(function(a, b){ return a.id - b.id });
+        this.display(this.element);
+    }else{
+        new Post(1, "Error", "There was an error loading the blog. This can happen if you do not have access to view Google Sheets.", "").display(this.element);
     }
-    this.posts.sort(function(a, b){ return a.id - b.id });
-    this.display(this.element);
 }
 Blog.prototype.display = function(element){
     for(var i = this.posts.length-1; i >= 0; i--){
@@ -86,10 +91,10 @@ Blog.prototype.addButtons = function(page, element)
     $(element).addClass("blogNavigation")
     if (page !== undefined && page !== 1)
     {
-        var backButton = $(`<a class="left" href="/index.html?page=${page-1}"></a>`).text("Newer");
+        var backButton = $(`<a class="left" href="/index.html?page=${page-1}"></a>`).text("❮");
         $(element).append(backButton);
     }
     
-    var forwardButton = $(`<a class="right" href="/index.html?page=${(page+1)}"></a>`).text("Older");
+    var forwardButton = $(`<a class="right" href="/index.html?page=${(page+1)}"></a>`).text("❯");
     $(element).append(forwardButton);
 }
