@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Stranger Lights | Phillip Clontz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="../javascript/ProcessingJS/processing.js"></script>
+    <script src="../javascript/directorySlider.js"></script>
+    <script>
+      $(function(){$("#header").load("../layouts/header.html");});
+    </script>
+</head>
+<body>
+<div id="header"></div>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Stranger Lights</h1>
+    </div>
+    <div id = "Notes">
+        <p>
+			Stranger Lights is what I gave the name of my halloween door. The materials 
+			I used to create it using a cardboard box, foil, Maki Maki, Raspberry Pi, 
+			Arduino Nano, and an addressable LED ribbon.
+		</p>
+
+		<h3>The Pressure Plate:</h3>
+		<p>
+			To create a pressure plate, which is hidden under a door mat. I took a cardboard 
+			box and cut it into two square pieces. On the bottom of each piece I glued a sheet 
+			of aluminum foil. I then placed the two pieces together with the foil side facing 
+			inward with some additional cardboard to create a gap so the foil would not touch at rest. 
+			One sheet of foil was connected to the ground terminal of the Maki Maki while the other one 
+			is wired to the space button. When the Maki Maki detects that the circuit has been completed 
+			(by the foil sheets touching) it sends a space signal to the Raspberry Pi.
+		</p>
+
+		<h3>Raspberry Pi:</h3>
+		<p>
+			The Raspberry Pi controls when the light show will play as well as provides the audio. 
+			The application cycles through a list of songs and waits for the space button to be pressed. 
+			Once the space button is pressed it stops the current song and begins playing the theme music 
+			to Stranger Things. At this time it also sends a signal to the Arduino that it is time to start 
+			the light show. While the light show is playing the Raspberry Pi ignores any 
+			additional space button presses. 
+		</p>
+
+		<h3>Arduino:</h3>
+		<p>
+			The LEDs that I use could not be controlled straight from the Raspberry Pi so I used an Arduino 
+			to interface with the ribbon. When the Arduino is not playing through the light show it alternates 
+			orange and green lights. However, when a signal over the usb port is detected the Arduino begins 
+			the light show. The instructions the Arduino sends to the LED ribbon and the music that the 
+			Raspberry Pi plays are synced up. Once the show is over the Arduino returns to its waiting stage
+		</p>
+
+		<h3>Final Product:</h3>
+
+		<p>
+			It is so fun to see the trick or treaters walk up to the house. I generally get an audible gasp when 
+			they walk across the pressure plate and are welcomed with a short little show. I look forward to adding 
+			more in the future. 
+		</p>
+		
+		<p>
+			The Git respository for Stranger Lights can be found at 
+			<a href="https://github.com/PhillipAC/strangerLights">
+				https://github.com/PhillipAC/strangerLights
+			</a>
+		</p>
+    </div>
+	<div class="embeddedItem">
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/ofg9CvwRfG0" frameborder="0" algin="center" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+		</iframe>
+	</div>
+</div>
+</body>
+</html>
