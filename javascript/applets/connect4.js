@@ -288,7 +288,7 @@ var Board = function(col, row, x, y, w, h, connect){
     };
 };
 
-var board = new Board(10,10,50,30,300,300, 6);
+var board = new Board(7,6,50,30,350,300, 4);
 board.setup();
 
 void draw() {
