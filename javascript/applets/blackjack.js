@@ -402,7 +402,7 @@ void draw() {
             else{
                 thisDeck.addDeck(pile, true);
                 thisDeck.moveDeck();
-                thisDeck.shuffleDeck();
+                thisDeck.shuffle();
             }
             //If the dealer has busted show all the dealer's cards
             if(dealerBust){
